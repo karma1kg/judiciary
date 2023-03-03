@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="childTravelDocument" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bcdb5c13-fcd0-41b7-acf0-366851774490">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="41"/>
+	<parameter name="applicationNo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+  s.SERVICE_NAME,
+  t.Father_Name,
+  t.Father_Cid,
+  (SELECT e.Village_Name FROM t_village_lookup e WHERE e.Village_Serial_No = t.F_Village_Id) AS f_villageName,
+  (SELECT f.Gewog_Name FROM t_gewog_lookup f WHERE f.Gewog_Serial_No = t.F_Gewog_Id) AS f_gewogName,
+  (SELECT g.Dzongkhag_Name FROM t_dzongkhag_lookup g WHERE g.Dzongkhag_Serial_No = t.F_Dzongkhag_Id) AS f_dzongkhagName,
+  t.Mother_Name,
+  t.Mother_Cid,
+  (SELECT e.Village_Name FROM t_village_lookup e WHERE e.Village_Serial_No = t.M_Village_Id) AS m_villageName,
+  (SELECT f.Gewog_Name FROM t_gewog_lookup f WHERE f.Gewog_Serial_No = t.M_Gewog_Id) AS m_gewogName,
+  (SELECT g.Dzongkhag_Name FROM t_dzongkhag_lookup g WHERE g.Dzongkhag_Serial_No = t.M_Dzongkhag_Id) AS m_dzongkhagName,
+  a.REASON,
+  t.Name AS childName,
+  a.CHILD_PASSPORT_NO,
+  t.DoB AS childDOB,
+  t.Travel_Place,
+  r.RELATIONSHIP_NAME,
+  b.NAME AS appName,
+  a.APP_PASSPORT_NO,
+  b.CID AS appCid,
+  b.DOB AS appDOB,
+  (SELECT e.Village_Name FROM t_village_lookup e WHERE e.Village_Serial_No = b.VILLAGE_ID) AS app_villageName,
+  (SELECT f.Gewog_Name FROM t_gewog_lookup f WHERE f.Gewog_Serial_No = b.GEWOG_ID) AS app_gewogName,
+  (SELECT g.Dzongkhag_Name FROM t_dzongkhag_lookup g WHERE g.Dzongkhag_Serial_No = b.DZONGKHAG_ID) AS app_dzongkhagName,
+  a.JUDGEMENT_NO,
+  a.JUDGEMENT_DATE,
+  a.LAWYER
+FROM t_application_details a
+INNER JOIN t_applicant_dtls b ON a.APPLICATION_NO = b.APPLICATION_NO
+INNER JOIN t_spouse_dtls c ON a.APPLICATION_NO = c.APPLICATION_NO
+INNER JOIN t_service_master s ON a.SERVICE_SL_NO = s.SERVICE_SL_NO
+INNER JOIN t_child_details t ON a.APPLICATION_NO = t.Application_No
+INNER JOIN t_relationship_master r ON a.RELATIONSHIP = r.RELATIONSHIP_ID
+WHERE a.APPLICATION_NO = $P{applicationNo}]]>
+	</queryString>
+	<field name="SERVICE_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Father_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Father_Cid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="f_villageName" class="java.lang.String"/>
+	<field name="f_gewogName" class="java.lang.String"/>
+	<field name="f_dzongkhagName" class="java.lang.String"/>
+	<field name="Mother_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Mother_Cid" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="m_villageName" class="java.lang.String"/>
+	<field name="m_gewogName" class="java.lang.String"/>
+	<field name="m_dzongkhagName" class="java.lang.String"/>
+	<field name="childName" class="java.lang.String"/>
+	<field name="CHILD_PASSPORT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="childDOB" class="java.lang.String"/>
+	<field name="Travel_Place" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RELATIONSHIP_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="appName" class="java.lang.String"/>
+	<field name="APP_PASSPORT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="appCid" class="java.lang.String"/>
+	<field name="appDOB" class="java.sql.Date"/>
+	<field name="app_villageName" class="java.lang.String"/>
+	<field name="app_gewogName" class="java.lang.String"/>
+	<field name="app_dzongkhagName" class="java.lang.String"/>
+	<field name="JUDGEMENT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JUDGEMENT_DATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LAWYER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="125">
+			<staticText>
+				<reportElement x="0" y="85" width="76" height="20" uuid="3379f273-daee-445e-a4e8-15b2ec5bda80"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Judgement No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="105" width="555" height="20" uuid="d74afb02-b316-4628-a29f-f347c61d3954"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{SERVICE_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="76" y="85" width="29" height="20" uuid="d1967dab-1e9d-464b-a1a1-6c16e05c93f4"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{JUDGEMENT_NO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="400" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="42" width="100" height="20" uuid="95b56add-915f-416e-9bd4-673be9bf4cfe"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[This is to certify that]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="42" width="235" height="20" uuid="cd48baf6-f559-464f-8e4e-ea61b71a2dd0"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[holder of Bhutanese Citizenship Identity Card No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="42" width="59" height="20" uuid="b2ce4ced-e486-4058-a1d9-5d7c241a3f1b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Father_Name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="446" y="42" width="67" height="20" uuid="d0a878fe-5128-4354-9f42-e71eb5c20d47"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[, resident of ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="394" y="42" width="52" height="20" uuid="8ff59108-7ab2-42f3-a057-489f66d9d594"/>
+				<textFieldExpression><![CDATA[$F{Father_Cid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="62" width="38" height="20" uuid="94e3965b-30b0-4802-b9a4-5d5d48cd461f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Village,]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="513" y="42" width="42" height="20" uuid="8a95ef5a-9dd3-4c12-a895-3bcdd3d7c877"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{f_villageName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="62" width="44" height="20" uuid="ddf64b43-d2f2-4ba3-bb49-6bcaecc92932"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ gewog, ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="38" y="62" width="52" height="20" uuid="3efd90c2-6b7a-4b17-92b9-041f2908e86e"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{f_gewogName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="62" width="78" height="20" uuid="856b90a0-9ebc-4868-b5e6-88f5de542fa4"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Dzongkhag and]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="134" y="62" width="46" height="20" uuid="eacec68b-4ea3-4f26-9a42-b4bb026136e5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{f_dzongkhagName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="309" y="62" width="246" height="20" uuid="1647758f-a18d-4f41-987d-454916eef00f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ holder of Bhutanese Citizenship Identity Card No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="258" y="62" width="51" height="20" uuid="ac831972-35d7-490d-a024-5a34476595e3"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Mother_Name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="52" y="82" width="59" height="20" uuid="f64a1888-b58d-4721-b263-070635bea800"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[, resident of ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="82" width="52" height="20" uuid="ccaed084-f67f-43ae-abd5-947b1d24c915"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Mother_Cid}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="149" y="82" width="43" height="20" uuid="8d6443b6-9cc9-4e63-8f80-9fb0a1622af0"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ village, ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="111" y="82" width="38" height="20" uuid="413c8020-91f9-41f7-b850-7129aadeb6f5"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{m_villageName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="237" y="82" width="37" height="20" uuid="4942e09d-1d56-4e08-bf4a-b848c53b920d"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ gewog, ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="192" y="82" width="45" height="20" uuid="5ccf0d55-471c-47a1-bbae-b9e2f8d187b7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{m_gewogName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="325" y="82" width="169" height="20" uuid="f19211ab-bb25-4c55-821c-c957d832c2e2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ dzongkhag are the legal parents of]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="274" y="82" width="51" height="20" uuid="9a40f03a-e4d9-41e3-8b52-f1ea84a8b0ef"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{m_dzongkhagName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="102" width="15" height="20" uuid="005d7130-6252-4581-ba69-c501c61822cf"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="76" y="102" width="100" height="20" uuid="df140e3b-2110-43e5-81b0-dd3fc01b92b9"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[holding Passport No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="176" y="102" width="47" height="20" uuid="ede409b0-c032-4449-a26f-768e24b54cbe"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CHILD_PASSPORT_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="156" width="149" height="20" uuid="a953cc0f-9703-4860-ab0f-cc1fe61193c3"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ In the best interest of the child, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="156" width="107" height="20" uuid="2253cf38-cfbc-4cd0-87a0-8e1c399cec62"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[may travel with his/her ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="111" y="176" width="38" height="20" uuid="31e8c0b8-7d1b-40c3-9258-8818902b352b"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[, from ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="309" y="156" width="31" height="20" uuid="b544e092-06ee-42a7-ba5a-1e3f711536b7"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{RELATIONSHIP_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="494" y="82" width="61" height="20" uuid="03b83092-b964-44cd-b010-41d68620ab55"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{childName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="383" y="156" width="67" height="20" uuid="12fb1d2a-e201-4787-91c5-46be415be4f4"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[, Passport No.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="15" y="102" width="61" height="20" uuid="3b98bbee-5124-45a5-a356-b5916bf4c9ff"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{childDOB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="149" y="156" width="53" height="20" uuid="6a6f509e-120e-4910-9bf1-4fff94e4c7e0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{childName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="156" width="43" height="20" uuid="1aba0a2f-71f7-41d1-ade5-43c05b6ef75d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{appName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="156" width="44" height="20" uuid="f5bb0404-5f0d-422a-a8dd-2b3e2f6e034c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{APP_PASSPORT_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="176" width="65" height="20" uuid="d5c112f8-9f12-4acb-b1ef-734828c4fc49"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[, date of birth]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="494" y="156" width="61" height="20" uuid="9b83d073-b2d6-46f1-ad4e-56872cad3d98"/>
+				<textFieldExpression><![CDATA[$F{appCid}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="176" width="46" height="20" uuid="09e829ed-9aba-48de-a8bb-405cab2e8827"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{appDOB}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="192" y="176" width="66" height="20" uuid="620f62a3-ad93-41dc-a778-999649449297"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[village, under ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="149" y="176" width="43" height="20" uuid="85ec62f8-8270-4015-90e4-35c27eb25133"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{app_villageName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="309" y="176" width="74" height="20" uuid="800b85f8-99d4-4542-a36a-b131bd34e7cd"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Gewog (Block), ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="258" y="176" width="51" height="20" uuid="a93c8e8b-6abd-43d4-8842-55fb24f06b3a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{app_gewogName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="421" y="176" width="134" height="20" uuid="74d82833-7dc0-49a2-9d1a-6a4734cf3b86"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Dzongkhag (District), to ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="383" y="176" width="38" height="20" uuid="187b926e-4fe8-4211-91af-053961234c81"/>
+				<textFieldExpression><![CDATA[$F{app_dzongkhagName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="65" y="196" width="182" height="20" uuid="d55279f8-86d1-4b08-a0dc-9d7b0bca2db2"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[, Mother is pursuing her further studies. ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="196" width="65" height="20" uuid="77ac9973-d155-491e-afaa-1aa2c388a492"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Travel_Place}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

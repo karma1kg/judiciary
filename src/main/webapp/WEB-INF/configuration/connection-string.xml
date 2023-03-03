@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--Localhost Connection-->
+<bean id ="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="url" value="jdbc:mysql://localhost:3306/judiciary"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="username"  value="root"/>
+        <property name="password" value="root"/>
+        <property name="validationQuery" value="SELECT 1"/>
+    </bean>
+
+    <!--Staging Connection-->
+   <!-- <bean id ="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://172.30.3.57:3306/judiciary"/>
+        <property name="username" value="usr_datahub"/>
+        <property name="password" value="($8l0Z3*Yd7lhtj"/>
+        <property name="validationQuery" value="SELECT 1"/>
+    </bean>-->
+
+
+    <!--Production Connection-->
+   <!-- <bean id ="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="url" value="jdbc:mysql://172.30.2.25:3306/judiciary_db"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="username"  value="usr_judiciary"/>
+        <property name="password" value="Q3rsJ}3s3X2sAw3x"/>
+        <property name="validationQuery" value="SELECT 1"/>
+    </bean>-->
+
+</beans>

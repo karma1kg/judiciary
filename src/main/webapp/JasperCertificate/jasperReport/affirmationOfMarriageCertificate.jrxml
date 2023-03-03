@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="affirmationOfMarriageCertificate" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4cef8714-a56c-49ab-a923-6425d2dd4c2b">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="applicationNo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT *
+FROM t_application_details a
+INNER JOIN t_applicant_dtls b ON a.APPLICATION_NO = b.APPLICATION_NO
+INNER JOIN t_spouse_dtls c ON a.APPLICATION_NO = c.APPLICATION_NO
+INNER JOIN t_service_master d ON a.SERVICE_SL_NO = d.SERVICE_SL_NO
+INNER JOIN t_village_lookup e ON e.Village_Serial_No = b.VILLAGE_ID
+INNER JOIN t_gewog_lookup f ON f.Gewog_Serial_No = b.GEWOG_ID
+INNER JOIN t_dzongkhag_lookup g ON g.Dzongkhag_Serial_No = b.DZONGKHAG_ID
+WHERE a.APPLICATION_NO =$P{applicationNo}]]>
+	</queryString>
+	<field name="APPLICATION_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SERVICE_SL_NO" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LETTER_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LETTER_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INCORRECT_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INCORRECT_DOB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MC_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CMC_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HOSPITAL_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RELATIONSHIP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOC_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LOST_DOC_TYPE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COURT_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DATE_OF_APPOINTMENT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STATUS_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REASON" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CREATED_BY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CREATED_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CASE_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JUDGEMENT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JUDGEMENT_DATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CLERK" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LAWYER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECEIPT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECEIPT_DATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RECEIPT_AMOUNT" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UPDATE_BY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PRINT_STATUS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PAYMENT_CLEARED" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="UPDATE_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REMARKS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EXAM_YEAR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="KUENSEL_DATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="INDEX_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CLASS_TYPE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="TRAVEL_REASON" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CHILD_PASSPORT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APP_PASSPORT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REG_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="REG_DATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="APPLICANT_DTLS_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DOB" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GENDER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MOBILE_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMAIL_ID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FATHER_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MOTHER_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="THARM_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="HOUSE_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="VILLAGE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="GEWOG_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DZONGKHAG_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ADDRESS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NATIONALITY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Religion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SPOUSE_DTLS_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SRP_No" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="FATHERS_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MOTHERS_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SERVICE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SERVICE_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SERVICE_SHORT_DESC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DEPARTMENT_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IS_ACTIVE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Village_Serial_No" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Village_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Village_Name_Bh" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Gewog_Serial_No" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Gewog_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Gewog_Name_Bh" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Dzongkhag_Serial_No" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Dungkhag_Serial_No" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Dzongkhag_Name" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Dzongkhag_Name_Bh" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="90">
+			<staticText>
+				<reportElement x="0" y="70" width="100" height="20" uuid="5450a71a-f7a6-4d8f-be18-778dae07adfa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Judgement No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="70" width="100" height="20" uuid="1242034f-feb8-4d43-ae34-a53224d09ed1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Form-2]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="70" width="33" height="20" uuid="3d3e6609-19a6-4aa5-b333-b9fa4d28d04c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{JUDGEMENT_NO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="274">
+			<textField>
+				<reportElement x="133" y="0" width="322" height="20" uuid="6432b858-b0d0-4b61-838b-bb1d686d586b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SERVICE_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="64" width="270" height="20" uuid="5f401131-8826-48a4-bd1b-1c47cf147685"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[The petition for the affirmation of marriage between Mr.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="270" y="64" width="81" height="20" uuid="f4f0f782-4497-4bd0-8752-b4671c3f4472"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="351" y="64" width="141" height="20" uuid="f3dace03-aa0f-4e25-8be0-afe523a10332"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[, holder of Bhutanese CID No.]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="492" y="64" width="63" height="20" uuid="ca976817-87c3-4a4d-a743-7eb1ec1a50b0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{CID}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="84" width="39" height="20" uuid="7cdc442a-b9de-434c-b00e-81baad193e5d"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[born on]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="39" y="84" width="83" height="20" uuid="5fd5ee8c-e3bd-4840-b93d-728928f4c930"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{DOB}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="122" y="84" width="57" height="20" uuid="18534759-bc94-4644-8dc8-7b7b206f2290"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[resident of]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="179" y="84" width="55" height="20" uuid="6c299185-3483-4880-8547-929bf1937959"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Village_Name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="234" y="84" width="61" height="20" uuid="6f534560-44aa-46f2-8b3f-0f5581495dc0"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[village from]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="295" y="84" width="52" height="20" uuid="dc37f5b8-52ea-4111-bccb-2d9c1a25fc51"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Gewog_Name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="347" y="84" width="100" height="20" uuid="d5e3a509-8059-49fd-8eb6-a2852baf95ef"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[gewog (Block) under ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="447" y="84" width="51" height="20" uuid="8bd4bc56-c5df-470f-804a-fe2fda14adfd"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Dzongkhag_Name}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="104" width="83" height="20" uuid="cb5e3ebf-bc18-4fd6-9977-fe8834aaac16"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[(District) and Mrs.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="498" y="84" width="57" height="20" uuid="f8604d47-cbc2-4b23-b49c-eff1258db12a"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[ dzongkhag]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50"/>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,14 @@
+
+keytool -list -alias datahub -keystore "/usr/java/jdk1.8.0_77/jre/lib/security/cacerts"
+
+keytool --import -alias datahub -file /home/admin/ssoLatestCert.cer -keystore "/usr/java/jdk1.8.0_77/jre/lib/security/cacerts"
+
+keytool --import -alias sso2022 -file /home/admin/ssoLatestCert.cer -keystore "/opt/jdk1.8.0_77/jre/lib/security/cacerts"
+
+
+keytool --import -alias datahub -file D:\ditt-datahub-certificate.cer -keystore "C:\Program Files\Java\jdk1.8.0_131\jre\lib\security\cacerts"
+
+
+
+
+

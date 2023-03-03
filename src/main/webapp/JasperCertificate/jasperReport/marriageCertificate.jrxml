@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="marriageCertificate" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="dc43b801-2c2f-4a40-8d1f-40b0d791c772">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="applicationNo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+  a.APPLICATION_NO,
+  a.JUDGEMENT_NO,
+  a.JUDGEMENT_DATE,
+  h.H_NAME,
+  h.H_DOB,
+  h.H_NATIONALITY,
+  h.CENSUS_NO,
+  h.H_CID,
+  h.H_FATHERS_NAME,
+  h.H_MOTHERS_NAME,
+  h.H_THARM_NO,
+  h.H_HOUSE_NO,
+  h.H_VILLAGE_NAME,
+  h.H_GEWOG_NAME,
+  h.H_DZONGKHAG_NAME,
+  w.W_NAME,
+  w.W_DOB,
+  w.W_NATIONALITY,
+  w.CENSUS_NO,
+  w.W_CID,
+  w.W_FATHERS_NAME,
+  w.W_MOTHERS_NAME,
+  w.W_THARM_NO,
+  w.W_HOUSE_NO,
+  w.W_VILLAGE_NAME,
+  w.W_GEWOG_NAME,
+  w.W_DZONGKHAG_NAME,
+  h.JUDGEMENT_NO_DZO,
+  h.JUDGEMENT_DATE_DZO,
+  h.LAWYER,
+  h.LUNAR_DATE
+FROM t_application_details a
+INNER JOIN t_mc_husbands_details h ON a.APPLICATION_NO = h.APPLICATION_NO
+INNER JOIN t_mc_wifes_details w ON a.APPLICATION_NO = w.APPLICATION_NO
+WHERE a.APPLICATION_NO =$P{applicationNo};]]>
+	</queryString>
+	<field name="APPLICATION_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JUDGEMENT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JUDGEMENT_DATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_DOB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_NATIONALITY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CENSUS_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_CID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_FATHERS_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_MOTHERS_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_THARM_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_HOUSE_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_VILLAGE_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_GEWOG_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="H_DZONGKHAG_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_DOB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_NATIONALITY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_CID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_FATHERS_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_MOTHERS_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_THARM_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_HOUSE_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_VILLAGE_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_GEWOG_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="W_DZONGKHAG_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JUDGEMENT_NO_DZO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JUDGEMENT_DATE_DZO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LAWYER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LUNAR_DATE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="50"/>
+	</pageHeader>
+	<detail>
+		<band height="305" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="a740f323-f5d1-418c-810a-852ae1090df4"/>
+				<textFieldExpression><![CDATA[$F{H_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="54b00a8c-cd1a-41f6-9328-524d47e65324"/>
+				<textFieldExpression><![CDATA[$F{H_DOB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="200" y="0" width="100" height="20" uuid="2c7f9c9c-6e9b-4ffb-b51d-eefe5a5a89d7"/>
+				<textFieldExpression><![CDATA[$F{H_DZONGKHAG_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="218" y="18" width="100" height="20" uuid="98a0bd24-c3fc-4fce-96a7-0844ed7845ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" isItalic="false" isStrikeThrough="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LAWYER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

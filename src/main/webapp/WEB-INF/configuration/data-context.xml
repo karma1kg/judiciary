@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans" xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
+
+<context:annotation-config/>
+    <bean id="emFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="persistenceUnitName" value="default"/>
+        <property name="packagesToScan" value="com.spring.mvc" />
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+        </property>
+
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+            </props>
+        </property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="txManager"/>
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emFactory"/>
+    </bean>
+
+    <bean id="persistenceExceptionTranslationPostProcessor"
+          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
+    </bean>
+
+    <bean id="queryProps" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath*:gov/judiciary/sqlquery/MarriageCertificateDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/ApproveAuthenticationPersonalDetailsDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/ApproveLostDocumentDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/ChargeAllocationDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/SingleMaritalStatusDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/CommonDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/AffirmationMarriageCertificateDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/AuthenticationPersonalDetailsDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/NotaryTaskListDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/DataManagerTaskListDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/PaymentDetailDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/PrintCertificateDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/LostDocumentDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/ReportsDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/TrackApplicationDao.mssql.sql</value>
+                <value>classpath*:gov/judiciary/sqlquery/ChildTravelDocumentDao.mssql.sql</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="msgCodeProps" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <!--<value>classpath*:lang/acc/batchInstructionProcessing.properties</value>
+                <value>classpath*:lang/inv/commonInvoicegeneration.properties</value>-->
+            </list>
+        </property>
+    </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

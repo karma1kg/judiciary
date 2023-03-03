@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="affirmationOfMC" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="444ef88d-3033-4243-aab7-bd0d606fbe59">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="JudiciaryLogo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="courtLogo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="courtBanner" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="applicationNo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+  b.NAME,
+  b.CID,
+  DATE_FORMAT( b.DOB,'%d %M, %Y') AS dob,
+  (SELECT v.Village_Name FROM t_village_lookup v WHERE b.VILLAGE_ID = v.Village_Serial_No) AS h_village,
+  (SELECT g.Gewog_Name FROM t_gewog_lookup g WHERE b.GEWOG_ID = g.Gewog_Serial_No) AS h_gewog,
+  (SELECT d.Dzongkhag_Name FROM t_dzongkhag_lookup d WHERE b.DZONGKHAG_ID = d.Dzongkhag_Serial_No) AS h_dzongkhag,
+  c.NAME AS wName,
+  c.CID AS wCidNo,
+  DATE_FORMAT( c.DOB,'%d %M, %Y') AS wDOB,
+  (SELECT v.Village_Name FROM t_village_lookup v WHERE c.VILLAGE_ID = v.Village_Serial_No) AS w_village,
+  (SELECT g.Gewog_Name FROM t_gewog_lookup g WHERE c.GEWOG_ID = g.Gewog_Serial_No) AS w_gewog,
+  (SELECT d.Dzongkhag_Name FROM t_dzongkhag_lookup d WHERE c.DZONGKHAG_ID = d.Dzongkhag_Serial_No) AS w_dzongkhag,
+  a.REG_NO,
+  DATE_FORMAT(a.REG_DATE ,'%d %M, %Y') AS regDate,
+  a.JUDGEMENT_NO,
+  DATE_FORMAT(a.JUDGEMENT_DATE ,'%d %M, %Y') AS judgementDate,
+  (SELECT z.COURT_NAME FROM t_court_master z WHERE a.COURT_ID = z.COURT_ID) AS courtName, a.LAWYER
+FROM
+  t_application_details a
+  JOIN t_applicant_dtls b ON a.APPLICATION_NO = b.APPLICATION_NO
+  JOIN t_spouse_dtls c ON a.APPLICATION_NO = c.APPLICATION_NO
+WHERE a.APPLICATION_NO = $P{applicationNo}]]>
+	</queryString>
+	<field name="NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CID" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="dob" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="h_village" class="java.lang.String"/>
+	<field name="h_gewog" class="java.lang.String"/>
+	<field name="h_dzongkhag" class="java.lang.String"/>
+	<field name="wName" class="java.lang.String"/>
+	<field name="wCidNo" class="java.lang.String"/>
+	<field name="wDOB" class="java.lang.String"/>
+	<field name="w_village" class="java.lang.String"/>
+	<field name="w_gewog" class="java.lang.String"/>
+	<field name="w_dzongkhag" class="java.lang.String"/>
+	<field name="REG_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="regDate" class="java.lang.String"/>
+	<field name="JUDGEMENT_NO" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="judgementDate" class="java.lang.String"/>
+	<field name="courtName" class="java.lang.String"/>
+	<field name="LAWYER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="168" splitType="Stretch">
+			<image hAlign="Center">
+				<reportElement x="232" y="17" width="121" height="106" uuid="e97adbce-851f-41d0-977a-79a4807a0927"/>
+				<imageExpression><![CDATA[$P{JudiciaryLogo}]]></imageExpression>
+			</image>
+			<image hAlign="Center">
+				<reportElement x="10" y="46" width="222" height="20" uuid="da34bae6-5180-4d9c-8e71-0d11f0912c70"/>
+				<imageExpression><![CDATA[$P{courtLogo}]]></imageExpression>
+			</image>
+			<image hAlign="Center">
+				<reportElement x="123" y="125" width="339" height="24" uuid="862b96fa-ddc5-40b1-91f5-eadf1665dc8d"/>
+				<imageExpression><![CDATA[$P{courtBanner}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="353" y="46" width="232" height="20" uuid="4b17dec7-44b4-4a27-90bd-b6ae5b834209"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DZONGKHAG COURT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="149" width="339" height="19" uuid="02f5a8f3-68c0-4199-a5af-4f84955f1c0b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ROYAL COURT OF JUSTICE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="353" y="80" width="232" height="20" uuid="cda34d1a-0ed9-42c4-bd46-1728b12f3bcb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{courtName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="802" splitType="Stretch">
+			<staticText>
+				<reportElement x="462" y="23" width="100" height="20" uuid="fdba4335-536b-4f40-847f-c83c31cc8f9e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NP Form - 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="23" width="158" height="20" uuid="6b2f7154-b48c-4fce-9fd0-b0d02ed2784d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thimthrim/NA (2020-1952/          ) ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="123" y="78" width="339" height="20" uuid="6866fcf8-b46e-4c80-933f-b63576fd0fcb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[AFFIRMATION OF MARRIAGE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="151" width="308" height="20" uuid="f3a6509b-a4b4-4576-bc68-1c7b9bcbdef6"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[The petition for the affirmation of marriage between Mr.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="462" y="151" width="100" height="20" uuid="00a54d7e-5b03-4634-b64e-326f3c4b8f91"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ holder of ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="171" width="233" height="20" uuid="148cd901-8d53-4cdd-b1c7-d7ab2aeb8eca"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Bhutanese Citizenship Identity Card No. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="365" y="171" width="81" height="20" uuid="42e2fe56-aa80-41d3-85ec-3247f343fcca"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[, born on the ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="191" width="100" height="20" uuid="b6843342-2841-47f8-a896-370333538d42"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Resident of ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="217" y="191" width="81" height="20" uuid="22330dac-12ad-4185-bdd8-10593a3abb05"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Village from ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="353" y="191" width="125" height="20" uuid="c940a9aa-6896-4118-bcb7-f6c3db96ecd1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Gewog (block) under ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="211" width="148" height="20" uuid="85768b73-8288-4cbe-a8fa-3982135d1f60"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Dzongkhag (District) and ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="211" width="282" height="20" uuid="951c987f-41a6-49a0-bbc1-0ba15097754e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[holder of Bhutanese Citizenship Identity Card No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="231" width="74" height="20" uuid="a79dc9f6-cf4b-48fd-8973-2866069f9f0c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[born on the ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="171" y="231" width="85" height="20" uuid="070cf3c8-1b4a-4fcf-9d02-eb035606f475"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Resident of ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="356" y="231" width="90" height="20" uuid="d23290b4-67c3-4069-be63-15cf56165227"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Village from ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="251" width="131" height="20" uuid="32000075-db0c-4149-9e67-c7660c86617e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Gewog (block) under ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="256" y="251" width="306" height="20" uuid="a71ab4ab-411c-430e-bd69-c69fb93e6385"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Dzongkhag (District) was registered and heard by this ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="271" width="233" height="20" uuid="6e00eadd-7d4d-4b75-ac2a-a6e71f8b09cf"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[court vide miscellaneous registration no.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="358" width="100" height="20" uuid="82c28a2c-44c2-4ed3-b232-3fc3a21c525c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[It is affirmed that ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="232" y="358" width="36" height="20" uuid="5a172938-af28-4461-bab2-682e91cfa206"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[and ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="358" width="162" height="20" uuid="052ec471-dae6-4aa9-b34e-784b32e6af0b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[are legally wedded husband ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="378" width="396" height="20" uuid="aee8b2fa-8daf-4eb0-b1dc-26fe416cdf2d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[and wife, their marriage being solemnized vide Marriage Certificate No. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="462" y="378" width="40" height="20" uuid="ceffeb50-c18b-4c1b-b8f5-e7318a8ce12c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[dated ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="398" width="222" height="18" uuid="3634520b-a7ca-4cb6-b716-52cfa9d1dcd0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[and issued in accordance to Section ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="398" width="318" height="18" uuid="a0af6756-cf96-4841-9e26-98fa9309c25c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Kha-1-7 of the Marriage Act, 1980 of the Kingdom of ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="71" y="416" width="246" height="20" uuid="b6df060a-59dc-4019-8468-91ff36d16ef2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[by the Royal Court of Justice, District Court, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="416" width="48" height="20" uuid="2fc5a9c4-658c-451b-9647-1606b39d66bf"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bhutan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="500" width="440" height="20" uuid="1adde8ba-a6da-4976-960d-ea8b56cd4475"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Issued under my hand and seal of the Royal Court of Justice, in accordance to ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="462" y="500" width="101" height="20" uuid="e6ecb6c6-d853-4537-b210-047fe0e861fa"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Section 49 of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="520" width="295" height="20" uuid="52bc0e61-fdbd-40e8-9b81-f73859ed31f8"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[the Civil and Criminal Procedure Code of Bhutan, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="540" width="541" height="20" uuid="02284a1c-dd46-402a-acfb-e4d0b6c54c3a"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[the Iron Male Rat year which corresponds to the Third Day of July, Two Thousand and Twenty. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="520" width="246" height="20" uuid="3e45e0bd-f300-4300-bdf7-bdac0b7f518d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[on this Thirteenth Day of the Fifth Month of]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="331" y="271" width="47" height="20" uuid="ffd4cb20-4714-4ecd-8042-00dbe7930f88"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[dated ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="331" y="151" width="131" height="20" uuid="0a4bbca1-1f9f-4dc6-8a37-f9a0449e9f9a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="171" width="109" height="20" uuid="11e54eb2-cd75-4030-abd3-85d2b0e9b1ea"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="123" y="191" width="94" height="20" uuid="955e360a-15bc-47a3-8762-8d42603aa40f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{h_village}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="191" width="55" height="20" uuid="f3f18224-3058-4638-b3bf-9abc6495e733"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{h_gewog}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="478" y="191" width="84" height="20" uuid="e1f62d3e-f141-49b5-a2a3-e6ea6dcd5f69"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{h_dzongkhag}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="171" y="211" width="46" height="20" uuid="bdaa5a9c-0980-403d-8dc5-561ec3b0e3e2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{wName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="502" y="211" width="61" height="20" uuid="2049038a-0bd3-4dc2-a904-b98b0a475ede"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{wCidNo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="231" width="100" height="20" uuid="8deaa731-0c66-4ac3-8001-6eb25756578f"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{w_village}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="231" width="116" height="20" uuid="2129d862-80a8-42d6-afc0-b0aa16ee2f65"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{w_gewog}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="154" y="251" width="102" height="20" uuid="bd27598f-0175-4ee5-8bc3-c456a5a44542"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{w_dzongkhag}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="256" y="271" width="75" height="20" uuid="be029794-9070-473c-b094-1360cf6a3566"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{REG_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="125" y="358" width="107" height="20" uuid="ce9919ba-f81e-497b-b6cf-0d4c85f9155c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="268" y="358" width="132" height="20" uuid="e37972c0-9f3a-4ab9-ab8d-56edfba774cd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{wName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="419" y="378" width="43" height="20" uuid="e3b55730-4754-4bca-9842-ee3e5b7856bd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JUDGEMENT_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="416" width="100" height="20" uuid="38b758af-1d79-4f0b-89f5-e8b59567de01"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{courtName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="446" y="171" width="116" height="20" uuid="ffa28218-a88d-4a53-b598-ea7343d1e5e3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dob}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="97" y="231" width="74" height="20" uuid="05a3b8e8-2723-46a8-a241-327cc5bc4519"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{wDOB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="378" y="271" width="184" height="20" uuid="919dab74-f5ae-4bd4-ba85-8e5cd1543065"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{regDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="502" y="378" width="60" height="20" uuid="ed765d7b-2d5b-44ea-b118-4bbdd4701140"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{judgementDate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="181" y="23" width="43" height="20" uuid="b3158bd3-b2e2-41bf-a007-e6c100b3e515"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JUDGEMENT_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="224" y="23" width="100" height="20" uuid="9f09cf46-7fee-4e28-899a-4844484d24ee"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[)]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="23" y="680" width="540" height="20" uuid="d5baa491-e852-428c-85b7-9d11b9c2dee1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LAWYER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
